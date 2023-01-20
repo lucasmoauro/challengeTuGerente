@@ -14,7 +14,6 @@ export const PopupBackground = styled.div`
 export const PopupContainer = styled.div`
 	background: #ebebeb;
 	width: 36rem;
-	height: 18rem;
 	border-radius: 10px;
 	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 `;
@@ -24,6 +23,8 @@ export const InputContainer = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
+	margin-bottom: 1.5rem;
 `;
 
 export const Input = styled.input`
@@ -53,6 +54,7 @@ export const CTAButtonsContainer = styled.div`
 	width: 100%;
 	display: flex;
 	align-items: center;
+	margin-bottom: 1rem;
 `;
 
 export const ButtonContainer = styled.div`

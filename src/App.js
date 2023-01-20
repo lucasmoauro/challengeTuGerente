@@ -12,9 +12,7 @@ function App() {
 			{isPopUpOpen && (
 				<PopUp isPopUpOpen={isPopUpOpen} setIsPopUpOpen={setIsPopUpOpen} />
 			)}
-			{/* INPUT */}
 			<Dropdown setIsPopUpOpen={setIsPopUpOpen} />
-			{/* PopUp */}
 		</div>
 	);
 }
