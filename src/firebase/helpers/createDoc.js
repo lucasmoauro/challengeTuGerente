@@ -16,7 +16,7 @@ export const createDoc = async ({
 		codigo,
 	};
 
-	const response = await setDoc(doc(db, "persona"), newDoc);
+	const response = await setDoc(doc(db, "persona", "persona"), newDoc);
 
 	return response;
 };

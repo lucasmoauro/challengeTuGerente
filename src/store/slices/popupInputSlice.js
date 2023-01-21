@@ -50,8 +50,12 @@ const popupInputSlice = createSlice({
 				[action.payload.fieldName]: action.payload.fieldInput,
 			};
 		},
+		popUpInitialState(state, action) {
+			return initialState;
+		},
 	},
 });
 
-export const { newInput, popupInput } = popupInputSlice.actions;
+export const { newInput, popupInput, popUpInitialState } =
+	popupInputSlice.actions;
 export default popupInputSlice.reducer;

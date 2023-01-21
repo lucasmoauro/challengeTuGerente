@@ -10,8 +10,15 @@ export const MainContainer = styled.div`
 	flex-direction: column;
 	z-index: -1;
 `;
+
+export const TitleContainer = styled.div`
+	font-size: 30px;
+	height: 40%;
+	display:flex;
+	align-items: center;
+`;
 export const Container = styled.div`
-	height: 25%;
+	height: 60%;
 `;
 
 export const Input = styled.input`
@@ -36,13 +43,12 @@ export const Input = styled.input`
 export const DropdownContainer = styled.div`
 	background: #f1f1fa;
 	width: 25rem;
-	max-height: 20rem;
+	max-height: 25rem;
 	margin-top: 0.05rem;
 	border-radius: 0 0 10px 10px;
 	overflow-y: scroll;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	flex-direction: column;
 `;
 
@@ -52,7 +58,7 @@ export const DropdownSpan = styled.span`
 	width: 100%;
 	border-bottom: 1px solid #d9d9d9;
 	cursor: pointer;
-
+	font-size: ${props => props.fontsize};
 	&:last-child {
 		border-bottom: none;
 	}

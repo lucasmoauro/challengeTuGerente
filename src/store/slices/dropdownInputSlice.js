@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// El estado inicial de la parametrizacion es "nombre"
 const initialState = {
 	dropdownInput: "",
-	fieldSelected: "",
+	fieldSelected: "nombre",
 };
 
 const dropdownInputSlice = createSlice({

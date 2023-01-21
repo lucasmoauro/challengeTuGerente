@@ -1,46 +1,34 @@
-# Getting Started with Create React App and Redux
+# tuGerente Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Pasos para levantar la aplicacion:
 
-## Available Scripts
+- Clonar el repositorio
+- Una vez finalizado, ejecutar el siguiente comando en la consola `docker build -t [nombre deseado] .`
+- Luego de la creacion de la imagen de DOCKER, ejecutar el comando `docker run --name=[nombre del contenedor] -p 3000:3000 [nombre de la imagen]`
+- Para visualizar la aplicacion se debe ingresar al URL `http://localhost:3000/`
 
-In the project directory, you can run:
+El flag `--name` permite asignarle un nombre al contenedor
 
-### `npm start`
+## Capturas de pantalla del challenge
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Inicio
+  <img src="https://res.cloudinary.com/dw33r7aul/image/upload/v1674323807/tuGerente/inicio_nk0afl.png" alt="inicio app"/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Menu desplegado
+  <img src="https://res.cloudinary.com/dw33r7aul/image/upload/v1674323807/tuGerente/desplegado_zwwioi.png" alt="menu desplegado"/>
 
-### `npm test`
+### Filtro
+  <img src="https://res.cloudinary.com/dw33r7aul/image/upload/v1674323807/tuGerente/filtro_n9lxve.png" alt="filtro de busqueda"/>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Popup
+  <img src="https://res.cloudinary.com/dw33r7aul/image/upload/v1674323807/tuGerente/popup_abwe9z.png" alt="popup"/>
 
-### `npm run build`
+### Creacion de registro
+  <img src="https://res.cloudinary.com/dw33r7aul/image/upload/v1674323807/tuGerente/creacion-1_xu0dwy.png" alt="creacion popup"/>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  <img src="https://res.cloudinary.com/dw33r7aul/image/upload/v1674323807/tuGerente/creacion-2_vdryyj.png" alt="busqueda de registro creado"/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Carga de registros bajo demanda
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="https://res.cloudinary.com/dw33r7aul/image/upload/v1674329388/tuGerente/loadondemand_tfxq4z.gif" alt="carga bajo demanda"/>

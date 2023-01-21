@@ -1,36 +1,57 @@
 import {
 	collection,
-	doc,
-	getDoc,
 	getDocs,
+	limit,
+	orderBy,
 	query,
-	where,
+	startAfter,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
-export const getAllDocs = async ({ fieldSelected, dropdownInput }) => {
+let lastDocument = null;
+
+export const getAllDocs = async (fieldSelected) => {
 	const querySearch = query(
 		collection(db, "persona"),
-		where(fieldSelected, "==", dropdownInput)
+		limit(20),
+		orderBy(fieldSelected),
+		startAfter(lastDocument)
 	);
 
 	const querySnapshot = await getDocs(querySearch);
 
 	const arr = [];
 
-	querySnapshot.forEach((doc) => arr.push(doc.data()));
+	querySnapshot.forEach((doc) => {
+		arr.push(doc.data());
+	});
+
+	lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
 
 	return arr;
 };
 
-export const getQueryDoc = async (query) => {
-	const docRef = doc(db, "persona", query.nombre);
+export const nextDocuments = async (fieldSelected) => {
+	try {
+		const nextPagination = await query(
+			collection(db, "persona"),
+			orderBy(fieldSelected),
+			startAfter(lastDocument),
+			limit(20)
+		);
 
-	const docSnap = await getDoc(docRef);
+		const querySnapshot = await getDocs(nextPagination);
 
-	if (docSnap.exists()) {
-		console.log(docSnap.data());
-	} else {
-		console.log("no data");
+		const arr = [];
+
+		querySnapshot.forEach((doc) => {
+			arr.push(doc.data());
+		});
+
+		lastDocument = querySnapshot.docs[querySnapshot.docs.length - 1];
+
+		return arr;
+	} catch (error) {
+		return;
 	}
 };

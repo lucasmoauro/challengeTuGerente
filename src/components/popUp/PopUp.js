@@ -1,9 +1,13 @@
 import { useRef } from "react";
-import { useReducer } from "react";
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllDocs, getQueryDoc } from "../../firebase/helpers/getDocs";
-import { newInput, popupInput } from "../../store/slices/popupInputSlice";
+import { createDoc } from "../../firebase/helpers/createDoc";
+import {
+	newInput,
+	popUpInitialState,
+	popupInput,
+} from "../../store/slices/popupInputSlice";
+import { toastError, toastSuccess } from "../toast/toastAlert";
 import {
 	Button,
 	ButtonContainer,
@@ -34,6 +38,24 @@ export const PopUp = ({ setIsPopUpOpen, isPopUpOpen }) => {
 		);
 	};
 
+	const popUpSubmit = async () => {
+		try {
+			await createDoc({ nombre, razon_social, nit, telefono, codigo }).then(
+				(res) => {
+					toastSuccess("Registro creado!");
+					dispatch(popUpInitialState());
+					setIsPopUpOpen(false);
+				}
+			);
+		} catch (error) {
+			toastError("Error al crear el registro!");
+		}
+	};
+
+	const popUpCancel = () => {
+		dispatch(popUpInitialState());
+		setIsPopUpOpen(false);
+	};
 	useEffect(() => {
 		dispatch(newInput({ dropdownInput, fieldSelected }));
 	}, []); //eslint-disable-line
@@ -45,27 +67,23 @@ o mediante la tecla "Escape" */
 	const closePopup = (e) => {
 		if (ref.current === e.target) {
 			setIsPopUpOpen(false);
+			dispatch(popUpInitialState());
 		}
 	};
 	const keyPress = useCallback(
 		(e) => {
 			if (e.key === "Escape" && isPopUpOpen) {
+				dispatch(popUpInitialState());
 				setIsPopUpOpen(false);
 			}
 		},
-		[setIsPopUpOpen, isPopUpOpen]
+		[setIsPopUpOpen, isPopUpOpen] //eslint-disable-line
 	);
 
 	useEffect(() => {
 		document.addEventListener("keydown", keyPress);
 		return () => document.removeEventListener("keydown", keyPress);
 	}, [keyPress]);
-	//! Armar on demand y todos los docs si no hay input
-	useEffect(() => {
-		getAllDocs({ fieldSelected, dropdownInput }).then((res) =>
-			console.log(res)
-		);
-	}, []);
 
 	return (
 		<PopupBackground ref={ref} onClick={closePopup}>
@@ -114,16 +132,12 @@ o mediante la tecla "Escape" */
 
 				<CTAButtonsContainer>
 					<ButtonContainer padding="0 0 0 2rem">
-						<Button
-							bg="#C50000"
-							bgactive="#ac0202"
-							onClick={() => setIsPopUpOpen(false)}
-						>
+						<Button bg="#C50000" bgactive="#ac0202" onClick={popUpCancel}>
 							CANCELAR
 						</Button>
 					</ButtonContainer>
 					<ButtonContainer padding="0 2rem 0 0">
-						<Button bg="#008732" bgactive="#01752c">
+						<Button bg="#008732" bgactive="#01752c" onClick={popUpSubmit}>
 							GUARDAR
 						</Button>
 					</ButtonContainer>
