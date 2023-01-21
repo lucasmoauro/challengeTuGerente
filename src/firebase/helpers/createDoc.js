@@ -1,4 +1,5 @@
 import { doc, setDoc } from "firebase/firestore";
+import { uid } from "uid";
 import { db } from "../firebase";
 
 export const createDoc = async ({
@@ -16,7 +17,7 @@ export const createDoc = async ({
 		codigo,
 	};
 
-	const response = await setDoc(doc(db, "persona", "persona"), newDoc);
+	const response = await setDoc(doc(db, "persona", uid(16)), newDoc);
 
 	return response;
 };
